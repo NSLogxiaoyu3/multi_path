@@ -328,6 +328,11 @@ uint64_t find_kernel_base() {
     //----------------nc YOUR_IP 4141-------------//
     //------------replace your IP in there------------//
     
+    mkdir("/var/dylib",0777);
+    moveFileFromAppDir("dylibs/dummypass.dylib", "/var/dylib/dummypass.dylib");
+    
+    inject_dylib(1, "/var/dylib/dummypass.dylib");
+    
 }
 - (IBAction)go:(id)sender {
     taskforpidzero = run();

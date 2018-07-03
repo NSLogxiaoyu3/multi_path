@@ -420,6 +420,17 @@ uint64_t getVnodeAtPath(const char *path, int deviceID) {
     printf("[Lakr] Got device id as:%d", deviceID);
     //selecting offsets.
     switch (deviceID) {
+        case 712:
+            printf("Seems to ba an iPad Air 2 so no need to fuck it");
+            break;
+        case 713:
+            printf("Seems to be iPad Pro (12.9-inch)\n");
+            if (@available (iOS 11.3, *)) {
+                //iPad Pro 12.9 iOS 11.3.1  from ipsw.
+                ksym_vnode_lookup = 0xfffffff0071db710;
+                ksym_vfs_context_current = 0xfffffff0071f9a04;
+            }
+            break;
         case 714:
             printf("Seems to be iPad Pro (9.7-inch)\n");
             if (@available (iOS 11.3, *)) {
@@ -471,6 +482,15 @@ uint64_t getVnodeAtPath(const char *path, int deviceID) {
                 ksym_vfs_context_current = 0xfffffff0071f9a04;
             }
             break;
+        case 61:
+            printf("Seems to be iPhone 6/ iPhone 6 Plus now\n");
+            if (0 == 1){     //iPhone 6/iPhone 6 Plus iOS 11.3.1-11.2
+            }else if (@available (iOS 11.3, *)){
+                //11.3.1 & 11.3
+                ksym_vnode_lookup = 0xfffffff0071dff70;
+                ksym_vfs_context_current = 0xfffffff0071ff918;
+            }
+            break;
         case 81:
             printf("Seems to be iPhone 8/ iPhone 8 Plus now\n");
             if (0 == 1){     //iPhone 8/iPhone 8 Plus GSM and Global iOS 11.3.1-11.2
@@ -481,7 +501,7 @@ uint64_t getVnodeAtPath(const char *path, int deviceID) {
             }
             break;
         case 51:
-            printf("Seems to be iPhone 8/ iPhone 8 Plus now\n");
+            printf("Seems to be iPhone 5s now\n");
             if (0 == 1){     //iPhone5s (Global) - 11.3.1  --iPhone 6,2
             }else if (@available (iOS 11.3, *)){
                 //11.3.1 & 11.3

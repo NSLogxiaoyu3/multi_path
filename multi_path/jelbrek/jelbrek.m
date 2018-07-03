@@ -10,9 +10,9 @@
 #include "osobject.h"
 #include <sys/spawn.h>
 
-//#include "inject_criticald.h"
-//#include "unlocknvram.h"
-//#include <IOKit/IOKitLib.h>
+#include "inject_criticald.h"
+#include "unlocknvram.h"
+#include <IOKit/IOKitLib.h>
 
 extern uint64_t kslide;
 
