@@ -417,7 +417,7 @@ uint64_t getVnodeAtPath(const char *path, int deviceID) {
     uint64_t ksym_vnode_lookup = 0xfffffff0071dffac;
     uint64_t ksym_vfs_context_current = 0xfffffff0071fe32c;
     
-    printf("[Lakr] Got device id as:%d", deviceID);
+    printf("[Lakr] Got device id as:%d. ", deviceID);
     //selecting offsets.
     switch (deviceID) {
         case 712:

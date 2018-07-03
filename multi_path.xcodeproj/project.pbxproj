@@ -25,6 +25,19 @@
 		82FA9AB120D2E24600AFBE92 /* shell.c in Sources */ = {isa = PBXBuildFile; fileRef = 82FA9AA420D2E24600AFBE92 /* shell.c */; };
 		82FA9AB820D2E37900AFBE92 /* remap_tfp_set_hsp.c in Sources */ = {isa = PBXBuildFile; fileRef = 82FA9AB720D2E37900AFBE92 /* remap_tfp_set_hsp.c */; };
 		82FA9ABB20D2E38400AFBE92 /* unlocknvram.c in Sources */ = {isa = PBXBuildFile; fileRef = 82FA9ABA20D2E38400AFBE92 /* unlocknvram.c */; };
+		AB98768020EBCAE000278E25 /* DefaultModuleOrder~ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB98767F20EBCAE000278E25 /* DefaultModuleOrder~ipad.plist */; };
+		AB98768320EBD54D00278E25 /* keepFile.c in Sources */ = {isa = PBXBuildFile; fileRef = AB98768120EBD54D00278E25 /* keepFile.c */; };
+		AB98768D20EBDC6900278E25 /* SFUIDisplay.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB98768A20EBDC6900278E25 /* SFUIDisplay.ttf */; };
+		AB98768E20EBDC6900278E25 /* SFUIText.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB98768B20EBDC6900278E25 /* SFUIText.ttf */; };
+		AB98768F20EBDC6900278E25 /* SFUITextItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB98768C20EBDC6900278E25 /* SFUITextItalic.ttf */; };
+		AB98769020EBDC6C00278E25 /* PingFang.ttc in Resources */ = {isa = PBXBuildFile; fileRef = AB98768920EBDC5D00278E25 /* PingFang.ttc */; };
+		AB98769820EBDC7900278E25 /* ArialBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB98769120EBDC7900278E25 /* ArialBoldItalic.ttf */; };
+		AB98769920EBDC7900278E25 /* Arial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB98769220EBDC7900278E25 /* Arial.ttf */; };
+		AB98769A20EBDC7900278E25 /* KeycapsPad.ttc in Resources */ = {isa = PBXBuildFile; fileRef = AB98769320EBDC7900278E25 /* KeycapsPad.ttc */; };
+		AB98769B20EBDC7900278E25 /* ArialBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB98769420EBDC7900278E25 /* ArialBold.ttf */; };
+		AB98769C20EBDC7900278E25 /* ArialItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB98769520EBDC7900278E25 /* ArialItalic.ttf */; };
+		AB98769D20EBDC7900278E25 /* ArialRoundedMTBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB98769620EBDC7900278E25 /* ArialRoundedMTBold.ttf */; };
+		AB98769E20EBDC7900278E25 /* Keycaps.ttc in Resources */ = {isa = PBXBuildFile; fileRef = AB98769720EBDC7900278E25 /* Keycaps.ttc */; };
 		B00730BC20C723AE005995FA /* offsets.m in Sources */ = {isa = PBXBuildFile; fileRef = B00730BB20C723AE005995FA /* offsets.m */; };
 		B030E1F620BC0864000CDD4C /* sploit.c in Sources */ = {isa = PBXBuildFile; fileRef = B030E1F520BC0864000CDD4C /* sploit.c */; };
 		B060B7DF20BC0624001FD0CE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B060B7DE20BC0624001FD0CE /* AppDelegate.m */; };
@@ -75,6 +88,20 @@
 		82FA9AB920D2E37D00AFBE92 /* remap_tfp_set_hsp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = remap_tfp_set_hsp.h; sourceTree = "<group>"; };
 		82FA9ABA20D2E38400AFBE92 /* unlocknvram.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unlocknvram.c; sourceTree = "<group>"; };
 		82FA9ABC20D2E38800AFBE92 /* unlocknvram.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = unlocknvram.h; sourceTree = "<group>"; };
+		AB98767F20EBCAE000278E25 /* DefaultModuleOrder~ipad.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "DefaultModuleOrder~ipad.plist"; sourceTree = "<group>"; };
+		AB98768120EBD54D00278E25 /* keepFile.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = keepFile.c; sourceTree = "<group>"; };
+		AB98768220EBD54D00278E25 /* keepFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = keepFile.h; sourceTree = "<group>"; };
+		AB98768920EBDC5D00278E25 /* PingFang.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = PingFang.ttc; sourceTree = "<group>"; };
+		AB98768A20EBDC6900278E25 /* SFUIDisplay.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFUIDisplay.ttf; sourceTree = "<group>"; };
+		AB98768B20EBDC6900278E25 /* SFUIText.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFUIText.ttf; sourceTree = "<group>"; };
+		AB98768C20EBDC6900278E25 /* SFUITextItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFUITextItalic.ttf; sourceTree = "<group>"; };
+		AB98769120EBDC7900278E25 /* ArialBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ArialBoldItalic.ttf; sourceTree = "<group>"; };
+		AB98769220EBDC7900278E25 /* Arial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Arial.ttf; sourceTree = "<group>"; };
+		AB98769320EBDC7900278E25 /* KeycapsPad.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = KeycapsPad.ttc; sourceTree = "<group>"; };
+		AB98769420EBDC7900278E25 /* ArialBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ArialBold.ttf; sourceTree = "<group>"; };
+		AB98769520EBDC7900278E25 /* ArialItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ArialItalic.ttf; sourceTree = "<group>"; };
+		AB98769620EBDC7900278E25 /* ArialRoundedMTBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ArialRoundedMTBold.ttf; sourceTree = "<group>"; };
+		AB98769720EBDC7900278E25 /* Keycaps.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Keycaps.ttc; sourceTree = "<group>"; };
 		ABAE769A20EAF06800C3BE5F /* multi_path.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = multi_path.entitlements; sourceTree = "<group>"; };
 		B00730BB20C723AE005995FA /* offsets.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = offsets.m; sourceTree = "<group>"; };
 		B00730BD20C7273C005995FA /* offsets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = offsets.h; sourceTree = "<group>"; };
@@ -173,6 +200,48 @@
 			path = IOKit;
 			sourceTree = "<group>";
 		};
+		AB98768420EBDC2400278E25 /* CoreAddition */ = {
+			isa = PBXGroup;
+			children = (
+				AB98769220EBDC7900278E25 /* Arial.ttf */,
+				AB98769420EBDC7900278E25 /* ArialBold.ttf */,
+				AB98769120EBDC7900278E25 /* ArialBoldItalic.ttf */,
+				AB98769520EBDC7900278E25 /* ArialItalic.ttf */,
+				AB98769620EBDC7900278E25 /* ArialRoundedMTBold.ttf */,
+				AB98769720EBDC7900278E25 /* Keycaps.ttc */,
+				AB98769320EBDC7900278E25 /* KeycapsPad.ttc */,
+			);
+			path = CoreAddition;
+			sourceTree = "<group>";
+		};
+		AB98768520EBDC2C00278E25 /* LanguageSupport */ = {
+			isa = PBXGroup;
+			children = (
+				AB98768920EBDC5D00278E25 /* PingFang.ttc */,
+			);
+			path = LanguageSupport;
+			sourceTree = "<group>";
+		};
+		AB98768620EBDC3C00278E25 /* CoreUI */ = {
+			isa = PBXGroup;
+			children = (
+				AB98768A20EBDC6900278E25 /* SFUIDisplay.ttf */,
+				AB98768B20EBDC6900278E25 /* SFUIText.ttf */,
+				AB98768C20EBDC6900278E25 /* SFUITextItalic.ttf */,
+			);
+			path = CoreUI;
+			sourceTree = "<group>";
+		};
+		AB98768820EBDC4C00278E25 /* FontsInjector */ = {
+			isa = PBXGroup;
+			children = (
+				AB98768620EBDC3C00278E25 /* CoreUI */,
+				AB98768520EBDC2C00278E25 /* LanguageSupport */,
+				AB98768420EBDC2400278E25 /* CoreAddition */,
+			);
+			path = FontsInjector;
+			sourceTree = "<group>";
+		};
 		B060B7D120BC0624001FD0CE = {
 			isa = PBXGroup;
 			children = (
@@ -195,19 +264,23 @@
 		B060B7DC20BC0624001FD0CE /* multi_path */ = {
 			isa = PBXGroup;
 			children = (
-				ABAE769A20EAF06800C3BE5F /* multi_path.entitlements */,
+				AB98768820EBDC4C00278E25 /* FontsInjector */,
 				82FA9A8A20D2E24600AFBE92 /* jelbrek */,
+				B060B7E620BC0624001FD0CE /* Assets.xcassets */,
+				AB98767F20EBCAE000278E25 /* DefaultModuleOrder~ipad.plist */,
+				ABAE769A20EAF06800C3BE5F /* multi_path.entitlements */,
 				B060B7DD20BC0624001FD0CE /* AppDelegate.h */,
 				B060B7DE20BC0624001FD0CE /* AppDelegate.m */,
 				B060B7E020BC0624001FD0CE /* ViewController.h */,
 				B060B7E120BC0624001FD0CE /* ViewController.m */,
 				B060B7E320BC0624001FD0CE /* Main.storyboard */,
-				B060B7E620BC0624001FD0CE /* Assets.xcassets */,
 				B060B7E820BC0624001FD0CE /* LaunchScreen.storyboard */,
 				B060B7EB20BC0624001FD0CE /* Info.plist */,
 				B060B7EC20BC0624001FD0CE /* main.m */,
 				B030E1F420BC0864000CDD4C /* sploit.h */,
 				B030E1F520BC0864000CDD4C /* sploit.c */,
+				AB98768120EBD54D00278E25 /* keepFile.c */,
+				AB98768220EBD54D00278E25 /* keepFile.h */,
 				B00730BB20C723AE005995FA /* offsets.m */,
 				B00730BD20C7273C005995FA /* offsets.h */,
 				B00730BE20C72BCB005995FA /* kmem.h */,
@@ -283,14 +356,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB98768F20EBDC6900278E25 /* SFUITextItalic.ttf in Resources */,
+				AB98768020EBCAE000278E25 /* DefaultModuleOrder~ipad.plist in Resources */,
+				AB98769C20EBDC7900278E25 /* ArialItalic.ttf in Resources */,
+				AB98768E20EBDC6900278E25 /* SFUIText.ttf in Resources */,
+				AB98769E20EBDC7900278E25 /* Keycaps.ttc in Resources */,
 				827C01E220CBFCDC00CD7A63 /* test in Resources */,
+				AB98769D20EBDC7900278E25 /* ArialRoundedMTBold.ttf in Resources */,
+				AB98768D20EBDC6900278E25 /* SFUIDisplay.ttf in Resources */,
 				B060B7EA20BC0624001FD0CE /* LaunchScreen.storyboard in Resources */,
 				82FA9AA720D2E24600AFBE92 /* Readme.md in Resources */,
 				B060B7E720BC0624001FD0CE /* Assets.xcassets in Resources */,
+				AB98769B20EBDC7900278E25 /* ArialBold.ttf in Resources */,
+				AB98769920EBDC7900278E25 /* Arial.ttf in Resources */,
+				AB98769020EBDC6C00278E25 /* PingFang.ttc in Resources */,
 				8258AE8920D3EC7C00AB9BC0 /* dylibs in Resources */,
 				8232C6F820CC3B1100C6C43B /* iosbinpack64 in Resources */,
+				AB98769A20EBDC7900278E25 /* KeycapsPad.ttc in Resources */,
 				82FA9AA820D2E24600AFBE92 /* screenshot.jpg in Resources */,
 				B060B7E520BC0624001FD0CE /* Main.storyboard in Resources */,
+				AB98769820EBDC7900278E25 /* ArialBoldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +393,7 @@
 				8258AE7E20D3BF0600AB9BC0 /* osobject.c in Sources */,
 				B060B7E220BC0624001FD0CE /* ViewController.m in Sources */,
 				82FA9AAF20D2E24600AFBE92 /* patchfinder64.m in Sources */,
+				AB98768320EBD54D00278E25 /* keepFile.c in Sources */,
 				B060B7ED20BC0624001FD0CE /* main.m in Sources */,
 				B00730BC20C723AE005995FA /* offsets.m in Sources */,
 				B060B7DF20BC0624001FD0CE /* AppDelegate.m in Sources */,

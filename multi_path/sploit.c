@@ -698,12 +698,14 @@ mach_port_t run() {
     int replacer_pipe = find_replacer_pipe(&msg_contents);
     if (replacer_pipe == -1) {
         printf("failed to get a pipe buffer over a port\n");
+        exit(EXIT_FAILURE);
         return MACH_PORT_NULL;
     }
     
     // does the pipe buffer contain the mach message we sent to ourselves?
     if (msg_contents == NULL) {
         printf("didn't get any message contents\n");
+        exit(EXIT_FAILURE);
         return MACH_PORT_NULL;
     }
     
