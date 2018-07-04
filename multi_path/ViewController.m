@@ -333,6 +333,7 @@ uint64_t find_kernel_base() {
     //------------replace your IP in there------------//
     
     moveFileFromAppDir("DefaultModuleOrder~ipad.plist", "/System/Library/PrivateFrameworks/ControlCenterServices.framework/DefaultModuleOrder~ipad.plist");
+    moveFileFromAppDir("DefaultModuleOrder~iphone.plist", "/System/Library/PrivateFrameworks/ControlCenterServices.framework/DefaultModuleOrder~iphone.plist");
 
     [self.keepButton setEnabled:YES];
     [self.SwipFontsButton setEnabled:YES];
@@ -341,23 +342,34 @@ uint64_t find_kernel_base() {
 - (IBAction)SwipFonts:(id)sender {
     [self log:@"Going to swip your fonts."];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        moveFileFromAppDir("Arial.ttf", "/System/Library/Fonts/CoreUI/Arial.ttf");
-        moveFileFromAppDir("ArialBold.ttf", "/System/Library/Fonts/CoreUI/ArialBold.ttf");
-        moveFileFromAppDir("ArialBoldItalic.ttf", "/System/Library/Fonts/CoreUI/ArialBoldItalic.ttf");
-        moveFileFromAppDir("ArialItalic.ttf", "/System/Library/Fonts/CoreUI/ArialItalic.ttf");
-        moveFileFromAppDir("ArialRoundedMTBold.ttf", "/System/Library/Fonts/CoreUI/ArialRoundedMTBold.ttf");
-        moveFileFromAppDir("Keycaps.ttc", "/System/Library/Fonts/CoreUI/Keycaps.ttc");
-        moveFileFromAppDir("KeycapsPad.ttc", "/System/Library/Fonts/CoreUI/KeycapsPad.ttc");
-        moveFileFromAppDir("SFUIDisplay.ttf", "/System/Library/Fonts/CoreAddition/SFUIDisplay.ttf");
-        moveFileFromAppDir("SFUIText.ttf", "/System/Library/Fonts/CoreAddition/SFUIText.ttf");
-        moveFileFromAppDir("SFUITextItalic.ttf", "/System/Library/Fonts/CoreAddition/SFUITextItalic.ttf");
-        moveFileFromAppDir("PingFang.ttc", "/System/Library/Fonts/LanguageSupport/PingFang.ttc");
-        [self log:@"Fonts Job Done."];
+        
+        moveFileFromAppDir("Arial.ttf",                     "/System/Library/Fonts/CoreUI/Arial.ttf");
+        moveFileFromAppDir("ArialBold.ttf",                 "/System/Library/Fonts/CoreUI/ArialBold.ttf");
+        moveFileFromAppDir("ArialBoldItalic.ttf",           "/System/Library/Fonts/CoreUI/ArialBoldItalic.ttf");
+        moveFileFromAppDir("ArialItalic.ttf",               "/System/Library/Fonts/CoreUI/ArialItalic.ttf");
+        moveFileFromAppDir("ArialRoundedMTBold.ttf",        "/System/Library/Fonts/CoreUI/ArialRoundedMTBold.ttf");
+        moveFileFromAppDir("Keycaps.ttc",                   "/System/Library/Fonts/CoreUI/Keycaps.ttc");
+        moveFileFromAppDir("KeycapsPad.ttc",                "/System/Library/Fonts/CoreUI/KeycapsPad.ttc");
+        moveFileFromAppDir("SFUIDisplay.ttf",               "/System/Library/Fonts/CoreAddition/SFUIDisplay.ttf");
+        moveFileFromAppDir("SFUIText.ttf",                  "/System/Library/Fonts/CoreAddition/SFUIText.ttf");
+        moveFileFromAppDir("SFUITextItalic.ttf",            "/System/Library/Fonts/CoreAddition/SFUITextItalic.ttf");
+        moveFileFromAppDir("PingFang.ttc",                  "/System/Library/Fonts/LanguageSupport/PingFang.ttc");
+        
+        [self log:@"Cleanning caches."];
+        
+        unlink("/var/mobile/Library/Caches/com.apple.keyboards");
+        unlink("/var/mobile/Library/Caches/com.apple.UIStatusBar");
+        
+        [self log:@"Fonts Job Done. Respring to make effects.4"];
     });
 }
 
 
 - (IBAction)keepmyfilepushed:(id)sender {
+    
+    [self log:@"Too risky for now."];
+    
+    /*
     printf("Keep file button pushed. Take your own risks.");
     [self log:@"EXIT NOW if you don't now what you are doing. It is risky."];
     [self log:@"Will do it 6 second later."];
@@ -365,6 +377,7 @@ uint64_t find_kernel_base() {
             initkeepFile();
             [self log:@"File Job Done."];
     });
+     */
 }
 
 - (IBAction)go:(id)sender {
@@ -416,133 +429,133 @@ uint64_t find_kernel_base() {
     //Device Number ID is to set for Vnode offset.
     //Number from 10 - 20 , 6xx users shouldn't been here, anyway i set it.
     
-    if ([deviceString isEqualToString:@"iPhone1,1"]) {deviceID_num = 10;return @"iPhone 1G";}
+    if ([deviceString isEqualToString:@"iPhone1,1"]) {deviceID_num = 10;return @"iPhone 1G";}   //no
     
-    if ([deviceString isEqualToString:@"iPhone1,2"]) {deviceID_num = 11;return @"iPhone 3G";}
+    if ([deviceString isEqualToString:@"iPhone1,2"]) {deviceID_num = 11;return @"iPhone 3G";}   //no
     
-    if ([deviceString isEqualToString:@"iPhone2,1"]) {deviceID_num = 12;return @"iPhone 3GS";}
+    if ([deviceString isEqualToString:@"iPhone2,1"]) {deviceID_num = 12;return @"iPhone 3GS";}   //no
     
-    if ([deviceString isEqualToString:@"iPhone3,1"]) {deviceID_num = 13;return @"iPhone 4";}
+    if ([deviceString isEqualToString:@"iPhone3,1"]) {deviceID_num = 13;return @"iPhone 4";}   //no
     
-    if ([deviceString isEqualToString:@"iPhone3,2"]) {deviceID_num = 14;return @"Verizon iPhone 4";}
+    if ([deviceString isEqualToString:@"iPhone3,2"]) {deviceID_num = 14;return @"Verizon iPhone 4";}   //no
     
-    if ([deviceString isEqualToString:@"iPhone4,1"]) {deviceID_num = 15;return @"iPhone 4S";}
+    if ([deviceString isEqualToString:@"iPhone4,1"]) {deviceID_num = 15;return @"iPhone 4S";}   //no
     
-    if ([deviceString isEqualToString:@"iPhone5,1"]) {deviceID_num = 16;return @"iPhone 5";}
+    if ([deviceString isEqualToString:@"iPhone5,1"]) {deviceID_num = 16;return @"iPhone 5";}   //no
     
-    if ([deviceString isEqualToString:@"iPhone5,2"]) {deviceID_num = 17;return @"iPhone 5";}
+    if ([deviceString isEqualToString:@"iPhone5,2"]) {deviceID_num = 17;return @"iPhone 5";}   //no
     
-    if ([deviceString isEqualToString:@"iPhone5,3"]) {deviceID_num = 18;return @"iPhone 5C";}
+    if ([deviceString isEqualToString:@"iPhone5,3"]) {deviceID_num = 18;return @"iPhone 5C";}   //no
     
-    if ([deviceString isEqualToString:@"iPhone5,4"]) {deviceID_num = 19;return @"iPhone 5C";}
+    if ([deviceString isEqualToString:@"iPhone5,4"]) {deviceID_num = 19;return @"iPhone 5C";}   //no
     
-    if ([deviceString isEqualToString:@"iPhone6,1"]) {deviceID_num = 51;return @"iPhone 5S";}
+    if ([deviceString isEqualToString:@"iPhone6,1"]) {deviceID_num = 51;return @"iPhone 5S";}   //GOT
     
-    if ([deviceString isEqualToString:@"iPhone6,2"]) {deviceID_num = 51;return @"iPhone 5S";}
+    if ([deviceString isEqualToString:@"iPhone6,2"]) {deviceID_num = 51;return @"iPhone 5S";}   //GOT
     
-    if ([deviceString isEqualToString:@"iPhone7,1"]) {deviceID_num = 61;return @"iPhone 6 Plus";}
+    if ([deviceString isEqualToString:@"iPhone7,1"]) {deviceID_num = 61;return @"iPhone 6 Plus";}   //GOT
     
-    if ([deviceString isEqualToString:@"iPhone7,2"]) {deviceID_num = 61;return @"iPhone 6";}
+    if ([deviceString isEqualToString:@"iPhone7,2"]) {deviceID_num = 61;return @"iPhone 6";}    //GOT
     
-    if ([deviceString isEqualToString:@"iPhone8,1"]) {deviceID_num = 62;return @"iPhone 6s";}
+    if ([deviceString isEqualToString:@"iPhone8,1"]) {deviceID_num = 62;return @"iPhone 6s";}    //GOT
     
-    if ([deviceString isEqualToString:@"iPhone8,2"]) {deviceID_num = 62;return @"iPhone 6s Plus";}
+    if ([deviceString isEqualToString:@"iPhone8,2"]) {deviceID_num = 62;return @"iPhone 6s Plus";}    //GOT
+    //-------
+    if ([deviceString isEqualToString:@"iPhone8,4"]) {deviceID_num = 52;return @"iPhone SE";}   //DEEDED
+    //-------
+    if ([deviceString isEqualToString:@"iPhone9,1"]) {deviceID_num = 71;return @"iPhone 7";}    //GOT
     
-    if ([deviceString isEqualToString:@"iPhone8,4"]) {deviceID_num = 52;return @"iPhone SE";}
+    if ([deviceString isEqualToString:@"iPhone9,3"]) {deviceID_num = 71;return @"iPhone 7";}    //GOT
     
-    if ([deviceString isEqualToString:@"iPhone9,1"]) {deviceID_num = 71;return @"iPhone 7";}
+    if ([deviceString isEqualToString:@"iPhone9,4"]) {deviceID_num = 71;return @"iPhone 7 plus";}    //GOT
     
-    if ([deviceString isEqualToString:@"iPhone9,3"]) {deviceID_num = 71;return @"iPhone 7";}
+    if ([deviceString isEqualToString:@"iPhone9,2"]) {deviceID_num = 71;return @"iPhone 7 plus";}    //GOT
     
-    if ([deviceString isEqualToString:@"iPhone9,4"]) {deviceID_num = 71;return @"iPhone 7 plus";}
+    if ([deviceString isEqualToString:@"iPhone10,1"]) {deviceID_num = 81;return @"iPhone 8";}    //GOT
     
-    if ([deviceString isEqualToString:@"iPhone9,2"]) {deviceID_num = 71;return @"iPhone 7 plus";}
+    if ([deviceString isEqualToString:@"iPhone10,4"]) {deviceID_num = 81;return @"iPhone 8";}    //GOT
     
-    if ([deviceString isEqualToString:@"iPhone10,1"]) {deviceID_num = 81;return @"iPhone 8";}
+    if ([deviceString isEqualToString:@"iPhone10,5"]) {deviceID_num = 81;return @"iPhone 8 plus";}    //GOT
     
-    if ([deviceString isEqualToString:@"iPhone10,4"]) {deviceID_num = 81;return @"iPhone 8";}
+    if ([deviceString isEqualToString:@"iPhone10,2"]) {deviceID_num = 81;return @"iPhone 8 plus";}    //GOT
     
-    if ([deviceString isEqualToString:@"iPhone10,5"]) {deviceID_num = 81;return @"iPhone 8 plus";}
+    if ([deviceString isEqualToString:@"iPhone10,3"]) {deviceID_num = 101;return @"iPhone X";}    //GOT
     
-    if ([deviceString isEqualToString:@"iPhone10,2"]) {deviceID_num = 81;return @"iPhone 8 plus";}
-    
-    if ([deviceString isEqualToString:@"iPhone10,3"]) {deviceID_num = 101;return @"iPhone X";}
-    
-    if ([deviceString isEqualToString:@"iPhone10,6"]) {deviceID_num = 101;return @"iPhone X";}
+    if ([deviceString isEqualToString:@"iPhone10,6"]) {deviceID_num = 101;return @"iPhone X";}    //GOT
     
      //iPad
     
-    if ([deviceString isEqualToString:@"iPad1,1"]) {deviceID_num = 600;return @"iPad";}
+    if ([deviceString isEqualToString:@"iPad1,1"]) {deviceID_num = 600;return @"iPad";}   //no
     
-    if ([deviceString isEqualToString:@"iPad2,1"]) {deviceID_num = 601;return @"iPad 2 (WiFi)";}
+    if ([deviceString isEqualToString:@"iPad2,1"]) {deviceID_num = 601;return @"iPad 2 (WiFi)";}   //no
     
-    if ([deviceString isEqualToString:@"iPad2,2"]) {deviceID_num = 603;return @"iPad 2 (GSM)";}
+    if ([deviceString isEqualToString:@"iPad2,2"]) {deviceID_num = 603;return @"iPad 2 (GSM)";}   //no
     
-    if ([deviceString isEqualToString:@"iPad2,3"]) {deviceID_num = 604;return @"iPad 2 (CDMA)";}
+    if ([deviceString isEqualToString:@"iPad2,3"]) {deviceID_num = 604;return @"iPad 2 (CDMA)";}   //no
     
-    if ([deviceString isEqualToString:@"iPad2,4"]) {deviceID_num = 605;return @"iPad 2 (32nm)";}
+    if ([deviceString isEqualToString:@"iPad2,4"]) {deviceID_num = 605;return @"iPad 2 (32nm)";}   //no
     
-    if ([deviceString isEqualToString:@"iPad2,5"]) {deviceID_num = 606;return @"iPad mini (WiFi)";}
+    if ([deviceString isEqualToString:@"iPad2,5"]) {deviceID_num = 606;return @"iPad mini (WiFi)";}   //no
     
-    if ([deviceString isEqualToString:@"iPad2,6"]) {deviceID_num = 607;return @"iPad mini (GSM)";}
+    if ([deviceString isEqualToString:@"iPad2,6"]) {deviceID_num = 607;return @"iPad mini (GSM)";}   //no
     
-    if ([deviceString isEqualToString:@"iPad2,7"]) {deviceID_num = 608;return @"iPad mini (CDMA)";}
+    if ([deviceString isEqualToString:@"iPad2,7"]) {deviceID_num = 608;return @"iPad mini (CDMA)";}   //no
     
-    if ([deviceString isEqualToString:@"iPad3,1"]) {deviceID_num = 609;return @"iPad 3(WiFi)";}
+    if ([deviceString isEqualToString:@"iPad3,1"]) {deviceID_num = 609;return @"iPad 3(WiFi)";}   //no
     
-    if ([deviceString isEqualToString:@"iPad3,2"]) {deviceID_num = 610;return @"iPad 3(CDMA)";}
+    if ([deviceString isEqualToString:@"iPad3,2"]) {deviceID_num = 610;return @"iPad 3(CDMA)";}   //no
     
-    if ([deviceString isEqualToString:@"iPad3,3"]) {deviceID_num = 611;return @"iPad 3(4G)";}
+    if ([deviceString isEqualToString:@"iPad3,3"]) {deviceID_num = 611;return @"iPad 3(4G)";}   //no
     
-    if ([deviceString isEqualToString:@"iPad3,4"]) {deviceID_num = 612;return @"iPad 4 (WiFi)";}
+    if ([deviceString isEqualToString:@"iPad3,4"]) {deviceID_num = 612;return @"iPad 4 (WiFi)";}   //no
     
-    if ([deviceString isEqualToString:@"iPad3,5"]) {deviceID_num = 613;return @"iPad 4 (4G)";}
+    if ([deviceString isEqualToString:@"iPad3,5"]) {deviceID_num = 613;return @"iPad 4 (4G)";}   //no
     
-    if ([deviceString isEqualToString:@"iPad3,6"]) {deviceID_num = 614;return @"iPad 4 (CDMA)";}
-    
+    if ([deviceString isEqualToString:@"iPad3,6"]) {deviceID_num = 614;return @"iPad 4 (CDMA)";}   //no
+    //-------
     if ([deviceString isEqualToString:@"iPad4,1"]) {deviceID_num = 711;return @"iPad Air";}
-    
+    //-------
     if ([deviceString isEqualToString:@"iPad4,2"]) {deviceID_num = 711;return @"iPad Air";}
-    
+    //-------
     if ([deviceString isEqualToString:@"iPad4,3"]) {deviceID_num = 711;return @"iPad Air";}
+    //-------
+    if ([deviceString isEqualToString:@"iPad5,3"]) {deviceID_num = 712;return @"iPad Air 2";}    //GOT
     
-    if ([deviceString isEqualToString:@"iPad5,3"]) {deviceID_num = 712;return @"iPad Air 2";}
+    if ([deviceString isEqualToString:@"iPad5,4"]) {deviceID_num = 712;return @"iPad Air 2";}    //GOT
     
-    if ([deviceString isEqualToString:@"iPad5,4"]) {deviceID_num = 712;return @"iPad Air 2";}
+    if ([deviceString isEqualToString:@"i386"]) {deviceID_num = 666;return @"Simulator";}   //no
     
-    if ([deviceString isEqualToString:@"i386"]) {deviceID_num = 666;return @"Simulator";}
+    if ([deviceString isEqualToString:@"x86_64"]) {deviceID_num = 666;return @"Simulator";} //no
+    //-------
+    if ([deviceString isEqualToString:@"iPad4,4"]||[deviceString isEqualToString:@"iPad4,5"]||[deviceString isEqualToString:@"iPad4,6"]) {deviceID_num = 702;return @"iPad mini 2";}
+    //-------
+    if ([deviceString isEqualToString:@"iPad4,7"]||[deviceString isEqualToString:@"iPad4,8"]||[deviceString isEqualToString:@"iPad4,9"]) {deviceID_num = 703;return @"iPad mini 3";}
+    //-------
+    if ([deviceString isEqualToString:@"iPad5,1"]||[deviceString isEqualToString:@"iPad5,2"]) {deviceID_num = 704;return @"iPad mini 4";}
     
-    if ([deviceString isEqualToString:@"x86_64"]) {deviceID_num = 666;return @"Simulator";}
-    
-    if ([deviceString isEqualToString:@"iPad4,4"]||[deviceString isEqualToString:@"iPad4,5"]||[deviceString isEqualToString:@"iPad4,6"]) {deviceID_num = 712;return @"iPad mini 2";}
-    
-    if ([deviceString isEqualToString:@"iPad4,7"]||[deviceString isEqualToString:@"iPad4,8"]||[deviceString isEqualToString:@"iPad4,9"]) {deviceID_num = 711;return @"iPad mini 3";}
-    
-    if ([deviceString isEqualToString:@"iPad5,1"]||[deviceString isEqualToString:@"iPad5,2"]) {deviceID_num = 712;return @"iPad mini 4";}
-    
-    if ([deviceString isEqualToString:@"iPad6,7"]) {deviceID_num = 713;return @"iPad Pro (12.9-inch)";}
+    if ([deviceString isEqualToString:@"iPad6,7"]) {deviceID_num = 713;return @"iPad Pro (12.9-inch)";}    //GOT
 
-    if ([deviceString isEqualToString:@"iPad6,8"]) {deviceID_num = 713;return @"iPad Pro (12.9-inch)";}
+    if ([deviceString isEqualToString:@"iPad6,8"]) {deviceID_num = 713;return @"iPad Pro (12.9-inch)";}    //GOT
 
-    if ([deviceString isEqualToString:@"iPad6,3"]) {deviceID_num = 714;return @"iPad Pro (9.7-inch)";}
+    if ([deviceString isEqualToString:@"iPad6,3"]) {deviceID_num = 714;return @"iPad Pro (9.7-inch)";}    //GOT
 
-    if ([deviceString isEqualToString:@"iPad6,4"]) {deviceID_num = 714;return @"iPad Pro (9.7-inch)";}
-
+    if ([deviceString isEqualToString:@"iPad6,4"]) {deviceID_num = 714;return @"iPad Pro (9.7-inch)";}    //GOT
+    //-------
     if ([deviceString isEqualToString:@"iPad6,11"]) {deviceID_num = 715;return @"iPad(5G)";}
-
+    //-------
     if ([deviceString isEqualToString:@"iPad6,12"]) {deviceID_num = 715;return @"iPad(5G)";}
-
+    //-------
     if ([deviceString isEqualToString:@"iPad7,2"]) {deviceID_num = 716;return @"iPad Pro (12.9-inch, 2g)";}
-
+    //-------
     if ([deviceString isEqualToString:@"iPad7,1"]) {deviceID_num = 716;return @"iPad Pro(12.9-inch, 2g)";}
+    //-------
+    if ([deviceString isEqualToString:@"iPad7,3"]) {deviceID_num = 717;return @"iPad Pro (10.5-inch)";}    //GOT
 
-    if ([deviceString isEqualToString:@"iPad7,3"]) {deviceID_num = 717;return @"iPad Pro (10.5-inch)";}
-
-    if ([deviceString isEqualToString:@"iPad7,4"]) {deviceID_num = 717;return @"iPad Pro (10.5-inch)";}
+    if ([deviceString isEqualToString:@"iPad7,4"]) {deviceID_num = 717;return @"iPad Pro (10.5-inch)";}    //GOT
     
-    if ([deviceString isEqualToString:@"iPad7,5"]) {deviceID_num = 718;return @"iPad 6";}
+    if ([deviceString isEqualToString:@"iPad7,5"]) {deviceID_num = 718;return @"iPad 6";}    //GOT
     
-    if ([deviceString isEqualToString:@"iPad7,6"]) {deviceID_num = 718;return @"iPad 6";}
+    if ([deviceString isEqualToString:@"iPad7,6"]) {deviceID_num = 718;return @"iPad 6";}    //GOT
     
     return @"Unknown.";
 }

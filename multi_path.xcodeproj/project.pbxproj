@@ -38,6 +38,7 @@
 		AB98769C20EBDC7900278E25 /* ArialItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB98769520EBDC7900278E25 /* ArialItalic.ttf */; };
 		AB98769D20EBDC7900278E25 /* ArialRoundedMTBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB98769620EBDC7900278E25 /* ArialRoundedMTBold.ttf */; };
 		AB98769E20EBDC7900278E25 /* Keycaps.ttc in Resources */ = {isa = PBXBuildFile; fileRef = AB98769720EBDC7900278E25 /* Keycaps.ttc */; };
+		ABD73FE120EC811F006E468C /* DefaultModuleOrder~iphone.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABD73FE020EC811F006E468C /* DefaultModuleOrder~iphone.plist */; };
 		B00730BC20C723AE005995FA /* offsets.m in Sources */ = {isa = PBXBuildFile; fileRef = B00730BB20C723AE005995FA /* offsets.m */; };
 		B030E1F620BC0864000CDD4C /* sploit.c in Sources */ = {isa = PBXBuildFile; fileRef = B030E1F520BC0864000CDD4C /* sploit.c */; };
 		B060B7DF20BC0624001FD0CE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B060B7DE20BC0624001FD0CE /* AppDelegate.m */; };
@@ -103,6 +104,7 @@
 		AB98769620EBDC7900278E25 /* ArialRoundedMTBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ArialRoundedMTBold.ttf; sourceTree = "<group>"; };
 		AB98769720EBDC7900278E25 /* Keycaps.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Keycaps.ttc; sourceTree = "<group>"; };
 		ABAE769A20EAF06800C3BE5F /* multi_path.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = multi_path.entitlements; sourceTree = "<group>"; };
+		ABD73FE020EC811F006E468C /* DefaultModuleOrder~iphone.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "DefaultModuleOrder~iphone.plist"; sourceTree = "<group>"; };
 		B00730BB20C723AE005995FA /* offsets.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = offsets.m; sourceTree = "<group>"; };
 		B00730BD20C7273C005995FA /* offsets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = offsets.h; sourceTree = "<group>"; };
 		B00730BE20C72BCB005995FA /* kmem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = kmem.h; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				AB98768820EBDC4C00278E25 /* FontsInjector */,
 				82FA9A8A20D2E24600AFBE92 /* jelbrek */,
 				B060B7E620BC0624001FD0CE /* Assets.xcassets */,
+				ABD73FE020EC811F006E468C /* DefaultModuleOrder~iphone.plist */,
 				AB98767F20EBCAE000278E25 /* DefaultModuleOrder~ipad.plist */,
 				ABAE769A20EAF06800C3BE5F /* multi_path.entitlements */,
 				B060B7DD20BC0624001FD0CE /* AppDelegate.h */,
@@ -374,6 +377,7 @@
 				8232C6F820CC3B1100C6C43B /* iosbinpack64 in Resources */,
 				AB98769A20EBDC7900278E25 /* KeycapsPad.ttc in Resources */,
 				82FA9AA820D2E24600AFBE92 /* screenshot.jpg in Resources */,
+				ABD73FE120EC811F006E468C /* DefaultModuleOrder~iphone.plist in Resources */,
 				B060B7E520BC0624001FD0CE /* Main.storyboard in Resources */,
 				AB98769820EBDC7900278E25 /* ArialBoldItalic.ttf in Resources */,
 			);

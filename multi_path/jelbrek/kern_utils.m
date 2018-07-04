@@ -395,13 +395,10 @@ out_error:
 
 
 
-//                                          deviceID is set in vc.m, we set it personally.
+//                                            deviceID is set in vc.m, we set it personally.
 
 uint64_t getVnodeAtPath(const char *path, int deviceID) {
     extern uint64_t kslide;
-    
-    
-    
     /*grab those using a decrypted kernelcache and nm/jtool. I am not able to make a patchfinder yet cus I'm still an amateur
      
      Run:
@@ -410,16 +407,46 @@ uint64_t getVnodeAtPath(const char *path, int deviceID) {
      nm /path/to/kernelcache | grep vfs_context_current
      
      */
-    
 
-
-    //set fooset default for iPad Air 2 iOS 11.3.1
+    //set offset default for iPad Air 2 iOS 11.3.1
     uint64_t ksym_vnode_lookup = 0xfffffff0071dffac;
     uint64_t ksym_vfs_context_current = 0xfffffff0071fe32c;
     
     printf("[Lakr] Got device id as:%d. ", deviceID);
     //selecting offsets.
     switch (deviceID) {
+        case 702:
+            printf("Seems to be iPad mini 2\n");
+            if (@available (iOS 11.3, *)) {
+                //iPad mini 2 from ipsw.
+                ksym_vfs_context_current = 0xfffffff0071f2088;
+                ksym_vnode_lookup = 0xfffffff0071d3d08;
+            }
+            break;
+        case 703:
+            printf("Seems to be iPad mini 3\n");
+            if (@available (iOS 11.3, *)) {
+                //iPad mini 3  from ipsw.
+                ksym_vnode_lookup = 0xfffffff0071d3d08;
+                ksym_vfs_context_current = 0xfffffff0071f2088;
+            }
+            break;
+        case 704:
+            printf("Seems to be iPad mini 4\n");
+            if (@available (iOS 11.3, *)) {
+                //iPad mini 4  from ipsw.
+                ksym_vnode_lookup = 0xfffffff0071dff70;
+                ksym_vfs_context_current = 0xfffffff0071fe2f0;
+            }
+            break;
+        case 711:
+            printf("Seems to be iPad Air 1\n");
+            if (@available (iOS 11.3, *)) {
+                //iPad Air 1 from ipsw.
+                ksym_vnode_lookup = 0xfffffff0071d3d08;
+                ksym_vfs_context_current = 0xfffffff0071f2088;
+            }
+            break;
         case 712:
             printf("Seems to ba an iPad Air 2 so no need to fuck it");
             break;
@@ -439,6 +466,22 @@ uint64_t getVnodeAtPath(const char *path, int deviceID) {
                 ksym_vfs_context_current = 0xfffffff0071f9a04;
             }
             break;
+        case 715:
+            printf("Seems to be iPad 5 G\n");
+            if (@available (iOS 11.3, *)) {
+                //iPad 5G
+                ksym_vnode_lookup = 0xfffffff007224de4;
+                ksym_vfs_context_current = 0xfffffff0072430d8;
+            }
+            break;
+        case 716:
+            printf("Seems to be iPad Pro (12.9-inch 2G).\n");
+            if (@available (iOS 11.3, *)) {
+                //iPad Pro 12.9 2G (iPad7,1)
+                //11.3.1
+                ksym_vfs_context_current = 0xfffffff007243134;
+                ksym_vnode_lookup = 0xfffffff007224e40;
+            }
         case 717:
             printf("Seems to be iPad Pro (10.5-inch)\n");
             if (@available (iOS 11.3, *)) {
@@ -509,7 +552,15 @@ uint64_t getVnodeAtPath(const char *path, int deviceID) {
                 ksym_vfs_context_current = 0xfffffff0071f2088;
             }
             break;
-            
+        case 52:
+            printf("Seems to be iPhone SE now\n");
+            if (0 == 1){     //iPhoneSE (Global) - 11.3.1
+            }else if (@available (iOS 11.3, *)){
+                //11.3.1 & 11.3
+                ksym_vnode_lookup = 0xfffffff0071db710;
+                ksym_vfs_context_current = 0xfffffff0071f9a04;
+            }
+            break;
         default:
             printf("Your device is not seted yet. use iPad Air 2 now for you.\n");
             break;
