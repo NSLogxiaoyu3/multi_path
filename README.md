@@ -6,9 +6,6 @@ Latest update includes:
 - working launchctl (no need to platformize manually! The real launchctl binary is moved and on its place another binary uses jailbreakd to launch it platformized)
 - working "inject_criticald" binary (uses jailbreakd!)
 
-Some of the offsets are now added for mountting root file system. It should work but up to you.
-Report your offsets here:https://github.com/Co2333/kernelCache
-Notice: 11.3.1 seems to be the same as 11.3 Only report both when they are not the same.
 
 iOS 11.0-11.3.1 jailbreak. Gets root, escapes sandbox, patches codesign (userland only), bind shell, nvram unlock (from Electra), host_get_special_port 4 (from Electra), code injection (from Electra; injects its amfid patch after using QiLin's since it's way better), SSH (dropbear), a small jailbreakd (inlcudes an example called "rootme", run it and if you get "uid: 0" it worked; check the README on the jailbreakd directory for more info :D)
 

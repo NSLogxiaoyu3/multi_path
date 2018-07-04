@@ -27,13 +27,14 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="PIN-bZ-bcX">
                                 <rect key="frame" x="16" y="20" width="287" height="237"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">
-
-Exploit by Ian Beer
-
+                                <string key="text">Exploit by Ian Beer
 Post exploitation is mostly from Electra, QiLin and a few things from my own
 
-Put together by @Jakeashacks :)</string>
+Put together by @Jakeashacks :)
+
+mount method from Min(Spark) Zheng
+
+offsets from Lakr and Raz Mashat</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
