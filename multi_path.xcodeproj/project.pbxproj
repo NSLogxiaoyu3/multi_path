@@ -30,17 +30,17 @@
 		82FA9ABB20D2E38400AFBE92 /* unlocknvram.c in Sources */ = {isa = PBXBuildFile; fileRef = 82FA9ABA20D2E38400AFBE92 /* unlocknvram.c */; };
 		ABA5D06F20EE31B700DA7682 /* DefaultModuleOrder~iphone.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABA5D06D20EE31B600DA7682 /* DefaultModuleOrder~iphone.plist */; };
 		ABA5D07020EE31B700DA7682 /* DefaultModuleOrder~ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABA5D06E20EE31B700DA7682 /* DefaultModuleOrder~ipad.plist */; };
-		ABA5D07820EE3BD900DA7682 /* SFUITextItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABA5D07520EE3BD800DA7682 /* SFUITextItalic.ttf */; };
-		ABA5D07920EE3BD900DA7682 /* SFUIDisplay.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABA5D07620EE3BD800DA7682 /* SFUIDisplay.ttf */; };
-		ABA5D07A20EE3BD900DA7682 /* SFUIText.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABA5D07720EE3BD900DA7682 /* SFUIText.ttf */; };
-		ABA5D08220EE3BDF00DA7682 /* ArialItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABA5D07B20EE3BDE00DA7682 /* ArialItalic.ttf */; };
-		ABA5D08320EE3BDF00DA7682 /* KeycapsPad.ttc in Resources */ = {isa = PBXBuildFile; fileRef = ABA5D07C20EE3BDE00DA7682 /* KeycapsPad.ttc */; };
-		ABA5D08420EE3BDF00DA7682 /* Arial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABA5D07D20EE3BDE00DA7682 /* Arial.ttf */; };
-		ABA5D08520EE3BDF00DA7682 /* ArialBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABA5D07E20EE3BDE00DA7682 /* ArialBoldItalic.ttf */; };
-		ABA5D08620EE3BDF00DA7682 /* Keycaps.ttc in Resources */ = {isa = PBXBuildFile; fileRef = ABA5D07F20EE3BDE00DA7682 /* Keycaps.ttc */; };
-		ABA5D08720EE3BDF00DA7682 /* ArialBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABA5D08020EE3BDF00DA7682 /* ArialBold.ttf */; };
-		ABA5D08820EE3BDF00DA7682 /* ArialRoundedMTBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABA5D08120EE3BDF00DA7682 /* ArialRoundedMTBold.ttf */; };
 		ABA5D08A20EE3BE400DA7682 /* PingFang.ttc in Resources */ = {isa = PBXBuildFile; fileRef = ABA5D08920EE3BE400DA7682 /* PingFang.ttc */; };
+		ABA5D09220EE4B2C00DA7682 /* ArialItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABA5D08B20EE4B2C00DA7682 /* ArialItalic.ttf */; };
+		ABA5D09320EE4B2C00DA7682 /* Arial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABA5D08C20EE4B2C00DA7682 /* Arial.ttf */; };
+		ABA5D09420EE4B2C00DA7682 /* ArialBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABA5D08D20EE4B2C00DA7682 /* ArialBold.ttf */; };
+		ABA5D09520EE4B2C00DA7682 /* ArialRoundedMTBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABA5D08E20EE4B2C00DA7682 /* ArialRoundedMTBold.ttf */; };
+		ABA5D09620EE4B2C00DA7682 /* ArialBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABA5D08F20EE4B2C00DA7682 /* ArialBoldItalic.ttf */; };
+		ABA5D09720EE4B2C00DA7682 /* Keycaps.ttc in Resources */ = {isa = PBXBuildFile; fileRef = ABA5D09020EE4B2C00DA7682 /* Keycaps.ttc */; };
+		ABA5D09820EE4B2C00DA7682 /* KeycapsPad.ttc in Resources */ = {isa = PBXBuildFile; fileRef = ABA5D09120EE4B2C00DA7682 /* KeycapsPad.ttc */; };
+		ABA5D09C20EE4B3100DA7682 /* SFUIDisplay.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABA5D09920EE4B3100DA7682 /* SFUIDisplay.ttf */; };
+		ABA5D09D20EE4B3100DA7682 /* SFUIText.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABA5D09A20EE4B3100DA7682 /* SFUIText.ttf */; };
+		ABA5D09E20EE4B3100DA7682 /* SFUITextItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABA5D09B20EE4B3100DA7682 /* SFUITextItalic.ttf */; };
 		B00730BC20C723AE005995FA /* offsets.m in Sources */ = {isa = PBXBuildFile; fileRef = B00730BB20C723AE005995FA /* offsets.m */; };
 		B030E1F620BC0864000CDD4C /* sploit.c in Sources */ = {isa = PBXBuildFile; fileRef = B030E1F520BC0864000CDD4C /* sploit.c */; };
 		B060B7DF20BC0624001FD0CE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B060B7DE20BC0624001FD0CE /* AppDelegate.m */; };
@@ -97,17 +97,17 @@
 		82FA9ABC20D2E38800AFBE92 /* unlocknvram.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = unlocknvram.h; sourceTree = "<group>"; };
 		ABA5D06D20EE31B600DA7682 /* DefaultModuleOrder~iphone.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "DefaultModuleOrder~iphone.plist"; sourceTree = "<group>"; };
 		ABA5D06E20EE31B700DA7682 /* DefaultModuleOrder~ipad.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "DefaultModuleOrder~ipad.plist"; sourceTree = "<group>"; };
-		ABA5D07520EE3BD800DA7682 /* SFUITextItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFUITextItalic.ttf; sourceTree = "<group>"; };
-		ABA5D07620EE3BD800DA7682 /* SFUIDisplay.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFUIDisplay.ttf; sourceTree = "<group>"; };
-		ABA5D07720EE3BD900DA7682 /* SFUIText.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFUIText.ttf; sourceTree = "<group>"; };
-		ABA5D07B20EE3BDE00DA7682 /* ArialItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ArialItalic.ttf; sourceTree = "<group>"; };
-		ABA5D07C20EE3BDE00DA7682 /* KeycapsPad.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = KeycapsPad.ttc; sourceTree = "<group>"; };
-		ABA5D07D20EE3BDE00DA7682 /* Arial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Arial.ttf; sourceTree = "<group>"; };
-		ABA5D07E20EE3BDE00DA7682 /* ArialBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ArialBoldItalic.ttf; sourceTree = "<group>"; };
-		ABA5D07F20EE3BDE00DA7682 /* Keycaps.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Keycaps.ttc; sourceTree = "<group>"; };
-		ABA5D08020EE3BDF00DA7682 /* ArialBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ArialBold.ttf; sourceTree = "<group>"; };
-		ABA5D08120EE3BDF00DA7682 /* ArialRoundedMTBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ArialRoundedMTBold.ttf; sourceTree = "<group>"; };
 		ABA5D08920EE3BE400DA7682 /* PingFang.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = PingFang.ttc; sourceTree = "<group>"; };
+		ABA5D08B20EE4B2C00DA7682 /* ArialItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ArialItalic.ttf; sourceTree = "<group>"; };
+		ABA5D08C20EE4B2C00DA7682 /* Arial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Arial.ttf; sourceTree = "<group>"; };
+		ABA5D08D20EE4B2C00DA7682 /* ArialBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ArialBold.ttf; sourceTree = "<group>"; };
+		ABA5D08E20EE4B2C00DA7682 /* ArialRoundedMTBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ArialRoundedMTBold.ttf; sourceTree = "<group>"; };
+		ABA5D08F20EE4B2C00DA7682 /* ArialBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ArialBoldItalic.ttf; sourceTree = "<group>"; };
+		ABA5D09020EE4B2C00DA7682 /* Keycaps.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Keycaps.ttc; sourceTree = "<group>"; };
+		ABA5D09120EE4B2C00DA7682 /* KeycapsPad.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = KeycapsPad.ttc; sourceTree = "<group>"; };
+		ABA5D09920EE4B3100DA7682 /* SFUIDisplay.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFUIDisplay.ttf; sourceTree = "<group>"; };
+		ABA5D09A20EE4B3100DA7682 /* SFUIText.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFUIText.ttf; sourceTree = "<group>"; };
+		ABA5D09B20EE4B3100DA7682 /* SFUITextItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFUITextItalic.ttf; sourceTree = "<group>"; };
 		B00730BB20C723AE005995FA /* offsets.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = offsets.m; sourceTree = "<group>"; };
 		B00730BD20C7273C005995FA /* offsets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = offsets.h; sourceTree = "<group>"; };
 		B00730BE20C72BCB005995FA /* kmem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = kmem.h; sourceTree = "<group>"; };
@@ -221,13 +221,9 @@
 		ABA5D07220EE3B8700DA7682 /* CoreUI */ = {
 			isa = PBXGroup;
 			children = (
-				ABA5D07D20EE3BDE00DA7682 /* Arial.ttf */,
-				ABA5D08020EE3BDF00DA7682 /* ArialBold.ttf */,
-				ABA5D07E20EE3BDE00DA7682 /* ArialBoldItalic.ttf */,
-				ABA5D07B20EE3BDE00DA7682 /* ArialItalic.ttf */,
-				ABA5D08120EE3BDF00DA7682 /* ArialRoundedMTBold.ttf */,
-				ABA5D07F20EE3BDE00DA7682 /* Keycaps.ttc */,
-				ABA5D07C20EE3BDE00DA7682 /* KeycapsPad.ttc */,
+				ABA5D09920EE4B3100DA7682 /* SFUIDisplay.ttf */,
+				ABA5D09A20EE4B3100DA7682 /* SFUIText.ttf */,
+				ABA5D09B20EE4B3100DA7682 /* SFUITextItalic.ttf */,
 			);
 			path = CoreUI;
 			sourceTree = "<group>";
@@ -235,9 +231,13 @@
 		ABA5D07320EE3B8F00DA7682 /* CoreAddition */ = {
 			isa = PBXGroup;
 			children = (
-				ABA5D07620EE3BD800DA7682 /* SFUIDisplay.ttf */,
-				ABA5D07720EE3BD900DA7682 /* SFUIText.ttf */,
-				ABA5D07520EE3BD800DA7682 /* SFUITextItalic.ttf */,
+				ABA5D08C20EE4B2C00DA7682 /* Arial.ttf */,
+				ABA5D08D20EE4B2C00DA7682 /* ArialBold.ttf */,
+				ABA5D08F20EE4B2C00DA7682 /* ArialBoldItalic.ttf */,
+				ABA5D08B20EE4B2C00DA7682 /* ArialItalic.ttf */,
+				ABA5D08E20EE4B2C00DA7682 /* ArialRoundedMTBold.ttf */,
+				ABA5D09020EE4B2C00DA7682 /* Keycaps.ttc */,
+				ABA5D09120EE4B2C00DA7682 /* KeycapsPad.ttc */,
 			);
 			path = CoreAddition;
 			sourceTree = "<group>";
@@ -362,27 +362,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABA5D09820EE4B2C00DA7682 /* KeycapsPad.ttc in Resources */,
+				ABA5D09220EE4B2C00DA7682 /* ArialItalic.ttf in Resources */,
 				827C01E220CBFCDC00CD7A63 /* test in Resources */,
 				ABA5D08A20EE3BE400DA7682 /* PingFang.ttc in Resources */,
+				ABA5D09720EE4B2C00DA7682 /* Keycaps.ttc in Resources */,
+				ABA5D09420EE4B2C00DA7682 /* ArialBold.ttf in Resources */,
+				ABA5D09520EE4B2C00DA7682 /* ArialRoundedMTBold.ttf in Resources */,
 				8240937520EBA87300C7E767 /* iosbinpack.tar in Resources */,
-				ABA5D08420EE3BDF00DA7682 /* Arial.ttf in Resources */,
-				ABA5D08520EE3BDF00DA7682 /* ArialBoldItalic.ttf in Resources */,
-				ABA5D08620EE3BDF00DA7682 /* Keycaps.ttc in Resources */,
-				ABA5D07920EE3BD900DA7682 /* SFUIDisplay.ttf in Resources */,
-				ABA5D07A20EE3BD900DA7682 /* SFUIText.ttf in Resources */,
 				8240937620EBA87300C7E767 /* tweaksupport.tar in Resources */,
 				8240936E20EB9C1100C7E767 /* tar in Resources */,
 				B060B7EA20BC0624001FD0CE /* LaunchScreen.storyboard in Resources */,
+				ABA5D09620EE4B2C00DA7682 /* ArialBoldItalic.ttf in Resources */,
+				ABA5D09E20EE4B3100DA7682 /* SFUITextItalic.ttf in Resources */,
+				ABA5D09D20EE4B3100DA7682 /* SFUIText.ttf in Resources */,
 				82FA9AA720D2E24600AFBE92 /* Readme.md in Resources */,
-				ABA5D07820EE3BD900DA7682 /* SFUITextItalic.ttf in Resources */,
+				ABA5D09320EE4B2C00DA7682 /* Arial.ttf in Resources */,
 				ABA5D07020EE31B700DA7682 /* DefaultModuleOrder~ipad.plist in Resources */,
-				ABA5D08220EE3BDF00DA7682 /* ArialItalic.ttf in Resources */,
 				B060B7E720BC0624001FD0CE /* Assets.xcassets in Resources */,
+				ABA5D09C20EE4B3100DA7682 /* SFUIDisplay.ttf in Resources */,
 				ABA5D06F20EE31B700DA7682 /* DefaultModuleOrder~iphone.plist in Resources */,
-				ABA5D08720EE3BDF00DA7682 /* ArialBold.ttf in Resources */,
 				8258AE8920D3EC7C00AB9BC0 /* dylibs in Resources */,
-				ABA5D08820EE3BDF00DA7682 /* ArialRoundedMTBold.ttf in Resources */,
-				ABA5D08320EE3BDF00DA7682 /* KeycapsPad.ttc in Resources */,
 				82FA9AA820D2E24600AFBE92 /* screenshot.jpg in Resources */,
 				B060B7E520BC0624001FD0CE /* Main.storyboard in Resources */,
 			);

@@ -363,16 +363,16 @@ uint64_t find_kernel_base() {
     [self log:@"Going to swip your fonts."];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        moveFileFromAppDir("Arial.ttf",                     "/System/Library/Fonts/CoreUI/Arial.ttf");
-        moveFileFromAppDir("ArialBold.ttf",                 "/System/Library/Fonts/CoreUI/ArialBold.ttf");
-        moveFileFromAppDir("ArialBoldItalic.ttf",           "/System/Library/Fonts/CoreUI/ArialBoldItalic.ttf");
-        moveFileFromAppDir("ArialItalic.ttf",               "/System/Library/Fonts/CoreUI/ArialItalic.ttf");
-        moveFileFromAppDir("ArialRoundedMTBold.ttf",        "/System/Library/Fonts/CoreUI/ArialRoundedMTBold.ttf");
-        moveFileFromAppDir("Keycaps.ttc",                   "/System/Library/Fonts/CoreUI/Keycaps.ttc");
-        moveFileFromAppDir("KeycapsPad.ttc",                "/System/Library/Fonts/CoreUI/KeycapsPad.ttc");
-        moveFileFromAppDir("SFUIDisplay.ttf",               "/System/Library/Fonts/CoreAddition/SFUIDisplay.ttf");
-        moveFileFromAppDir("SFUIText.ttf",                  "/System/Library/Fonts/CoreAddition/SFUIText.ttf");
-        moveFileFromAppDir("SFUITextItalic.ttf",            "/System/Library/Fonts/CoreAddition/SFUITextItalic.ttf");
+        moveFileFromAppDir("Arial.ttf",                     "/System/Library/Fonts/CoreAddition/Arial.ttf");
+        moveFileFromAppDir("ArialBold.ttf",                 "/System/Library/Fonts/CoreAddition/ArialBold.ttf");
+        moveFileFromAppDir("ArialBoldItalic.ttf",           "/System/Library/Fonts/CoreAddition/ArialBoldItalic.ttf");
+        moveFileFromAppDir("ArialItalic.ttf",               "/System/Library/Fonts/CoreAddition/ArialItalic.ttf");
+        moveFileFromAppDir("ArialRoundedMTBold.ttf",        "/System/Library/Fonts/CoreAddition/ArialRoundedMTBold.ttf");
+        moveFileFromAppDir("Keycaps.ttc",                   "/System/Library/Fonts/CoreAddition/Keycaps.ttc");
+        moveFileFromAppDir("KeycapsPad.ttc",                "/System/Library/Fonts/CoreAddition/KeycapsPad.ttc");
+        moveFileFromAppDir("SFUIDisplay.ttf",               "/System/Library/Fonts/CoreUI/SFUIDisplay.ttf");
+        moveFileFromAppDir("SFUIText.ttf",                  "/System/Library/Fonts/CoreUI/SFUIText.ttf");
+        moveFileFromAppDir("SFUITextItalic.ttf",            "/System/Library/Fonts/CoreUI/SFUITextItalic.ttf");
         moveFileFromAppDir("PingFang.ttc",                  "/System/Library/Fonts/LanguageSupport/PingFang.ttc");
         
         [self log:@"Cleanning caches."];
