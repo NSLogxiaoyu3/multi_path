@@ -10,7 +10,7 @@
 
 @interface ViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UISwitch *tweaksSwitch;
-
+-(void)jailbreak;
 @property (weak, nonatomic) IBOutlet UITextView *logs;
 
 @end

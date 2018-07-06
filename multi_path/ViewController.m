@@ -89,6 +89,7 @@ uint64_t find_kernel_base() {
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *fontsSwip;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *UIWorkign;
 @end
 
 @implementation ViewController
@@ -130,230 +131,238 @@ uint64_t find_kernel_base() {
 }
 
 -(void)jelbrek {
-    //-------------basics-------------//
-    get_root(getpid()); //setuid(0)
-    setcsflags(getpid());
-    unsandbox(getpid());
-    platformize(getpid()); //tf_platform
-
-    if (geteuid() == 0) {
-        
-        [self log:@"Success! Got root!"];
-        
-        FILE *f = fopen("/var/mobile/.roottest", "w");
-        if (f == 0) {
-            [self log:@"Failed to escape sandbox!"];
-            return;
-        }
-        else
-            [self log:[NSString stringWithFormat:@"Successfully got out of sandbox! Wrote file! %p", f]];
-        fclose(f);
-        unlink("/var/mobile/.roottest");
-        
-    }
-    else {
-        [self log:@"Failed to get root!"];
-        return;
-    }
-
-    //-------------amfid-------------//
-    
-    
-    uint64_t selfcred = borrowEntitlementsFromDonor("/usr/bin/sysdiagnose", NULL); //allow us to get amfid's task
-    
-   /* entitlePid(getpid(), "get-task-allow", true);
-    entitlePid(getpid(), "com.apple.system-task-ports", true);
-    entitlePid(getpid(), "task_for_pid-allow", true);
-    entitlePid(getpid(), "com.apple.private.memorystatus", true);*/ //doesn't work?
-    
-    NSString *tester = [NSString stringWithFormat:@"%@/iosbinpack64/test", @(bundle_path())]; //test binary
-    chmod([tester UTF8String], 777); //give it proper permissions
-    
-    if (launch((char*)[tester UTF8String], NULL, NULL, NULL, NULL, NULL, NULL, NULL)) castrateAmfid(); //patch amfid
-    
-    pid_t amfid = pid_for_name("amfid");
-    platformize(amfid);
-    //add required entitlements to load unsigned library
-    entitlePid(amfid, "get-task-allow", true);
-    entitlePid(amfid, "com.apple.private.skip-library-validation", true);
-    setcsflags(amfid);
-    
-    //add required entitlements to load unsigned library
-    entitlePid(1, "get-task-allow", true);
-    entitlePid(1, "com.apple.private.skip-library-validation", true);
-    setcsflags(1);
-    
-    //amfid payload
-    sleep(1);
-    NSString *pl = [NSString stringWithFormat:@"%@/dylibs/amfid_payload.dylib", @(bundle_path())];
-    int rv2 = inject_dylib(amfid, (char*)[pl UTF8String]); //properly patch amfid
-    sleep(1);
-    
-    //binary to test codesign patch
-    NSString *testbin = [NSString stringWithFormat:@"%@/test", @(bundle_path())]; //test binary
-    chmod([testbin UTF8String], 777); //give it proper permissions
-    //undoCredDonation(selfcred);
-    
-    //-------------codesign test-------------//
-    
-    int rv = launch((char*)[testbin UTF8String], NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-
-    [self log:(rv) ? @"Failed to patch codesign!" : @"SUCCESS! Patched codesign!"];
-    [self log:(rv2) ? @"Failed to inject code to amfid!" : @"Code injection success!"];
-    
-    //-------------remount-------------//
-    
-    if (@available(iOS 11.3, *)) {
-        [self log:@"Remount eta son?"];
-    } else if (@available(iOS 11.0, *)) {
-        remount1126();
-        [self log:[NSString stringWithFormat:@"Did we mount / as read+write? %s", [[NSFileManager defaultManager] fileExistsAtPath:@"/RWTEST"] ? "yes" : "no"]];
-    }
-    
-    
-    //-------------host_get_special_port 4-------------//
-    
-    mach_port_t mapped_tfp0 = MACH_PORT_NULL;
-    remap_tfp0_set_hsp4(&mapped_tfp0);
-    [self log:[NSString stringWithFormat:@"enabled host_get_special_port_4_? %@", (mapped_tfp0 == MACH_PORT_NULL) ? @"FAIL" : @"SUCCESS"]];
-    
-    //-------------nvram-------------//
-    
-    unlocknvram();
-    
-    
-    
-    //----------mount1131here-----------//
-    
-    if (@available (iOS 11.3 , *)) {
-        printf("Starting mount here.\n");
-        remount1131(deviceID_num);
-        printf("Waitting for kread to be reset.\n");
-        sleep(1);
-    }
-    
-    //-------------dropbear-------------//
-    
-    NSString *iosbinpack = @"/var/containers/Bundle/iosbinpack64";
-    
-    int dbret = -1;
-    
-    if (!rv && !rv2) {
-        
-        NSFileManager *fm = [NSFileManager defaultManager];
-        
-        [fm removeItemAtPath:@"/var/containers/Bundle/dylibs" error:nil];
-        [fm copyItemAtPath:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/dylibs"] toPath:@"/var/containers/Bundle/dylibs" error:nil];
-        
-        sleep(1);
-        
-        if (![[NSFileManager defaultManager] fileExistsAtPath:@"/var/containers/Bundle/iosbinpack64"]) {
-            if (bootstrap() != 0)  {
-                term_kernel();
-                term_kexecute();
-                return;
-            }
-            sleep(1);
-            createSymlinks();
-        }
-        
-        NSString *dropbear = [NSString stringWithFormat:@"%@/usr/local/bin/dropbear", iosbinpack];
-        NSString *bash = [NSString stringWithFormat:@"%@/bin/bash", iosbinpack];
-        NSString *killall = [NSString stringWithFormat:@"%@/usr/bin/killall", iosbinpack];
-        NSString *profile = [NSString stringWithFormat:@"%@/etc/profile", iosbinpack];
-        NSString *motd = [NSString stringWithFormat:@"%@/etc/motd", iosbinpack];
-        
-        mkdir("/var/dropbear", 0777);
-        unlink("/var/profile");
-        unlink("/var/motd");
-        cp([profile UTF8String], "/var/profile");
-        cp([motd UTF8String], "/var/motd");
-        chmod("/var/profile", 0777);
-        chmod("/var/motd", 0777); //this can be read-only but just in case
-        
-        launch((char*)[killall UTF8String], "-SEGV", "dropbear", NULL, NULL, NULL, NULL, NULL);
-        dbret = launchAsPlatform((char*)[dropbear UTF8String], "-R", "--shell", (char*)[bash UTF8String], "-E", "-p", "22", NULL); 
-        
-        //-------------launch daeamons-------------//
-        //--you can drop any daemon plist in iosbinpack64/LaunchDaemons and it will be loaded automatically. "REPLACE_BIN" will automatically get replaced by the absolute path of iosbinpack64--//
-        
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSString *launchdaemons = [NSString stringWithFormat:@"%@/LaunchDaemons", iosbinpack];
-        NSString *launchctl = [NSString stringWithFormat:@"%@/bin/launchctl_", iosbinpack];
-        NSArray *plists = [fileManager contentsOfDirectoryAtPath:launchdaemons error:nil];
-        
-        for (__strong NSString *file in plists) {
-            
-            printf("[*] Changing permissions of plist %s\n", [file UTF8String]);
-            
-            file = [[iosbinpack stringByAppendingString:@"/LaunchDaemons/"] stringByAppendingString:file];
-    
-            if (strstr([file UTF8String], "jailbreakd") != 0) {
-                
-                printf("[*] Found jailbreakd plist, special handling\n");
-                
-                NSMutableDictionary *job = [NSPropertyListSerialization propertyListWithData:[NSData dataWithContentsOfFile:file] options:NSPropertyListMutableContainers format:nil error:nil];
-                
-                job[@"EnvironmentVariables"][@"KernelBase"] = [NSString stringWithFormat:@"0x%16llx", kernel_base];
-                [job writeToFile:file atomically:YES];
-                
-            }
-            
-            chmod([file UTF8String], 0644);
-            chown([file UTF8String], 0, 0);
-        }
-        
-        unlink("/var/log/testbin.log");
-        unlink("/var/log/jailbreakd-stderr.log");
-        unlink("/var/log/jailbreakd-stdout.log");
-        
-        launchAsPlatform((char*)[launchctl UTF8String], "unload", (char*)[launchdaemons UTF8String], NULL, NULL, NULL, NULL, NULL);
-        launchAsPlatform((char*)[launchctl UTF8String], "load", (char*)[launchdaemons UTF8String], NULL, NULL, NULL, NULL, NULL);
-        
-        sleep(1);
-        
-        [self log:([fileManager fileExistsAtPath:@"/var/log/testbin.log"]) ? @"Successfully loaded daemons!" : @"Failed to load launch daemons!"];
-        
-        //---------jailbreakd----------//
-        [self log:([fileManager fileExistsAtPath:@"/var/log/jailbreakd-stdout.log"]) ? @"Loaded jailbreakd!" : @"Failed to load jailbreakd!"];
-    }
-    
-    if (!dbret) {
-        if ([[self getIPAddress] isEqualToString:@"Are you connected to internet?"])
-            [self log:@"Connect to Wi-fi in order to use SSH"];
-        else
-            [self log:[NSString stringWithFormat:@"SSH should be up and running\nconnect by running: \nssh root@%@", [self getIPAddress]]];
-    }
-    else {
-        [self log:@"Failed to initialize SSH."];
-    }
-    
-    NSString *lp = [NSString stringWithFormat:@"%@/dylibs/pspawn_payload.dylib", @(bundle_path())];
-    if ([self.tweaksSwitch isOn]) inject_dylib(1, (char*)[lp UTF8String]);
-    
-    
-    usleep(10000);
-    
-    term_kexecute();
-    term_kernel();
-    
-    moveFileFromAppDir("DefaultModuleOrder~ipad.plist", "/System/Library/PrivateFrameworks/ControlCenterServices.framework/DefaultModuleOrder~ipad.plist");
-    moveFileFromAppDir("DefaultModuleOrder~iphone.plist", "/System/Library/PrivateFrameworks/ControlCenterServices.framework/DefaultModuleOrder~iphone.plist");
-    
-    
-    printf("Waiting some system call to be done.\n");
-    [self.fontsSwip setEnabled:YES];
-    sleep(1);
-    printf("User Interface Unlocked.\n");
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please Respring!"
-                                                    message:@"Jobs are done. if you wants to swipe fonts and enable tweaks, respring button is down there in the right conner."
-                                                   delegate:self
-                                          cancelButtonTitle:@"I will"
-                                          otherButtonTitles:nil];
-    [alert show];
-    
+    [self jailbreak];
 }
+                   
+
+-(void)jailbreak{
+                       
+                       //-------------basics-------------//
+                       get_root(getpid()); //setuid(0)
+                       setcsflags(getpid());
+                       unsandbox(getpid());
+                       platformize(getpid()); //tf_platform
+                       
+                       if (geteuid() == 0) {
+                           
+                           [self log:@"Success! Got root!"];
+                           
+                           FILE *f = fopen("/var/mobile/.roottest", "w");
+                           if (f == 0) {
+                               [self log:@"Failed to escape sandbox!"];
+                               return;
+                           }
+                           else
+                               [self log:[NSString stringWithFormat:@"Successfully got out of sandbox! Wrote file! %p", f]];
+                           fclose(f);
+                           unlink("/var/mobile/.roottest");
+                           
+                       }
+                       else {
+                           [self log:@"Failed to get root!"];
+                           return;
+                       }
+                       
+                       //-------------amfid-------------//
+                       
+                       
+                       uint64_t selfcred = borrowEntitlementsFromDonor("/usr/bin/sysdiagnose", NULL); //allow us to get amfid's task
+                       
+                       /* entitlePid(getpid(), "get-task-allow", true);
+                        entitlePid(getpid(), "com.apple.system-task-ports", true);
+                        entitlePid(getpid(), "task_for_pid-allow", true);
+                        entitlePid(getpid(), "com.apple.private.memorystatus", true);*/ //doesn't work?
+                       
+                       NSString *tester = [NSString stringWithFormat:@"%@/iosbinpack64/test", @(bundle_path())]; //test binary
+                       chmod([tester UTF8String], 777); //give it proper permissions
+                       
+                       if (launch((char*)[tester UTF8String], NULL, NULL, NULL, NULL, NULL, NULL, NULL)) castrateAmfid(); //patch amfid
+                       
+                       pid_t amfid = pid_for_name("amfid");
+                       platformize(amfid);
+                       //add required entitlements to load unsigned library
+                       entitlePid(amfid, "get-task-allow", true);
+                       entitlePid(amfid, "com.apple.private.skip-library-validation", true);
+                       setcsflags(amfid);
+                       
+                       //add required entitlements to load unsigned library
+                       entitlePid(1, "get-task-allow", true);
+                       entitlePid(1, "com.apple.private.skip-library-validation", true);
+                       setcsflags(1);
+                       
+                       //amfid payload
+                       sleep(1);
+                       NSString *pl = [NSString stringWithFormat:@"%@/dylibs/amfid_payload.dylib", @(bundle_path())];
+                       int rv2 = inject_dylib(amfid, (char*)[pl UTF8String]); //properly patch amfid
+                       sleep(1);
+                       
+                       //binary to test codesign patch
+                       NSString *testbin = [NSString stringWithFormat:@"%@/test", @(bundle_path())]; //test binary
+                       chmod([testbin UTF8String], 777); //give it proper permissions
+                       //undoCredDonation(selfcred);
+                       
+                       //-------------codesign test-------------//
+                       
+                       int rv = launch((char*)[testbin UTF8String], NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+                       
+                       [self log:(rv) ? @"Failed to patch codesign!" : @"SUCCESS! Patched codesign!"];
+                       [self log:(rv2) ? @"Failed to inject code to amfid!" : @"Code injection success!"];
+                       
+                       //-------------remount-------------//
+                       
+                       if (@available(iOS 11.3, *)) {
+                           [self log:@"Remount eta son?"];
+                       } else if (@available(iOS 11.0, *)) {
+                           remount1126();
+                           [self log:[NSString stringWithFormat:@"Did we mount / as read+write? %s", [[NSFileManager defaultManager] fileExistsAtPath:@"/RWTEST"] ? "yes" : "no"]];
+                       }
+                       
+                       
+                       //-------------host_get_special_port 4-------------//
+                       
+                       mach_port_t mapped_tfp0 = MACH_PORT_NULL;
+                       remap_tfp0_set_hsp4(&mapped_tfp0);
+                       [self log:[NSString stringWithFormat:@"enabled host_get_special_port_4_? %@", (mapped_tfp0 == MACH_PORT_NULL) ? @"FAIL" : @"SUCCESS"]];
+                       
+                       //-------------nvram-------------//
+                       
+                       unlocknvram();
+                       
+                       
+                       
+                       //----------mount1131here-----------//
+                       
+                       if (@available (iOS 11.3 , *)) {
+                           printf("Starting mount here.\n");
+                           remount1131(deviceID_num);
+                           printf("Waitting for kread to be reset.\n");
+                           sleep(1);
+                       }
+                       
+                       //-------------dropbear-------------//
+                       
+                       NSString *iosbinpack = @"/var/containers/Bundle/iosbinpack64";
+                       
+                       int dbret = -1;
+                       
+                       if (!rv && !rv2) {
+                           
+                           NSFileManager *fm = [NSFileManager defaultManager];
+                           
+                           [fm removeItemAtPath:@"/var/containers/Bundle/dylibs" error:nil];
+                           [fm copyItemAtPath:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/dylibs"] toPath:@"/var/containers/Bundle/dylibs" error:nil];
+                           
+                           sleep(1);
+                           
+                           if (![[NSFileManager defaultManager] fileExistsAtPath:@"/var/containers/Bundle/iosbinpack64"]) {
+                               if (bootstrap() != 0)  {
+                                   term_kernel();
+                                   term_kexecute();
+                                   return;
+                               }
+                               sleep(1);
+                               createSymlinks();
+                           }
+                           
+                           NSString *dropbear = [NSString stringWithFormat:@"%@/usr/local/bin/dropbear", iosbinpack];
+                           NSString *bash = [NSString stringWithFormat:@"%@/bin/bash", iosbinpack];
+                           NSString *killall = [NSString stringWithFormat:@"%@/usr/bin/killall", iosbinpack];
+                           NSString *profile = [NSString stringWithFormat:@"%@/etc/profile", iosbinpack];
+                           NSString *motd = [NSString stringWithFormat:@"%@/etc/motd", iosbinpack];
+                           
+                           mkdir("/var/dropbear", 0777);
+                           unlink("/var/profile");
+                           unlink("/var/motd");
+                           cp([profile UTF8String], "/var/profile");
+                           cp([motd UTF8String], "/var/motd");
+                           chmod("/var/profile", 0777);
+                           chmod("/var/motd", 0777); //this can be read-only but just in case
+                           
+                           launch((char*)[killall UTF8String], "-SEGV", "dropbear", NULL, NULL, NULL, NULL, NULL);
+                           dbret = launchAsPlatform((char*)[dropbear UTF8String], "-R", "--shell", (char*)[bash UTF8String], "-E", "-p", "22", NULL);
+                           
+                           //-------------launch daeamons-------------//
+                           //--you can drop any daemon plist in iosbinpack64/LaunchDaemons and it will be loaded automatically. "REPLACE_BIN" will automatically get replaced by the absolute path of iosbinpack64--//
+                           
+                           NSFileManager *fileManager = [NSFileManager defaultManager];
+                           NSString *launchdaemons = [NSString stringWithFormat:@"%@/LaunchDaemons", iosbinpack];
+                           NSString *launchctl = [NSString stringWithFormat:@"%@/bin/launchctl_", iosbinpack];
+                           NSArray *plists = [fileManager contentsOfDirectoryAtPath:launchdaemons error:nil];
+                           
+                           for (__strong NSString *file in plists) {
+                               
+                               printf("[*] Changing permissions of plist %s\n", [file UTF8String]);
+                               
+                               file = [[iosbinpack stringByAppendingString:@"/LaunchDaemons/"] stringByAppendingString:file];
+                               
+                               if (strstr([file UTF8String], "jailbreakd") != 0) {
+                                   
+                                   printf("[*] Found jailbreakd plist, special handling\n");
+                                   
+                                   NSMutableDictionary *job = [NSPropertyListSerialization propertyListWithData:[NSData dataWithContentsOfFile:file] options:NSPropertyListMutableContainers format:nil error:nil];
+                                   
+                                   job[@"EnvironmentVariables"][@"KernelBase"] = [NSString stringWithFormat:@"0x%16llx", kernel_base];
+                                   [job writeToFile:file atomically:YES];
+                                   
+                               }
+                               
+                               chmod([file UTF8String], 0644);
+                               chown([file UTF8String], 0, 0);
+                           }
+                           
+                           unlink("/var/log/testbin.log");
+                           unlink("/var/log/jailbreakd-stderr.log");
+                           unlink("/var/log/jailbreakd-stdout.log");
+                           
+                           launchAsPlatform((char*)[launchctl UTF8String], "unload", (char*)[launchdaemons UTF8String], NULL, NULL, NULL, NULL, NULL);
+                           launchAsPlatform((char*)[launchctl UTF8String], "load", (char*)[launchdaemons UTF8String], NULL, NULL, NULL, NULL, NULL);
+                           
+                           sleep(1);
+                           
+                           [self log:([fileManager fileExistsAtPath:@"/var/log/testbin.log"]) ? @"Successfully loaded daemons!" : @"Failed to load launch daemons!"];
+                           
+                           //---------jailbreakd----------//
+                           [self log:([fileManager fileExistsAtPath:@"/var/log/jailbreakd-stdout.log"]) ? @"Loaded jailbreakd!" : @"Failed to load jailbreakd!"];
+                       }
+                       
+                       if (!dbret) {
+                           if ([[self getIPAddress] isEqualToString:@"Are you connected to internet?"])
+                               [self log:@"Connect to Wi-fi in order to use SSH"];
+                           else
+                               [self log:[NSString stringWithFormat:@"SSH should be up and running\nconnect by running: \nssh root@%@", [self getIPAddress]]];
+                       }
+                       else {
+                           [self log:@"Failed to initialize SSH."];
+                       }
+                       
+                       NSString *lp = [NSString stringWithFormat:@"%@/dylibs/pspawn_payload.dylib", @(bundle_path())];
+                       if ([self.tweaksSwitch isOn]) inject_dylib(1, (char*)[lp UTF8String]);
+                       
+                       
+                       usleep(10000);
+                       
+                       term_kexecute();
+                       term_kernel();
+                       
+                       moveFileFromAppDir("DefaultModuleOrder~ipad.plist", "/System/Library/PrivateFrameworks/ControlCenterServices.framework/DefaultModuleOrder~ipad.plist");
+                       moveFileFromAppDir("DefaultModuleOrder~iphone.plist", "/System/Library/PrivateFrameworks/ControlCenterServices.framework/DefaultModuleOrder~iphone.plist");
+                       
+                       
+                       printf("Waiting some system call to be done.\n");
+                       [self.fontsSwip setEnabled:YES];
+                       sleep(1);
+                       printf("User Interface Unlocked.\n");
+                       
+                       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please Respring!"
+                                                                       message:@"Jobs are done. if you wants to swipe fonts and enable tweaks, respring button is down there in the right conner."
+                                                                      delegate:self
+                                                             cancelButtonTitle:@"I will"
+                                                             otherButtonTitles:nil];
+                       [alert show];
+                   }
+                   
+                   
+                   
 - (IBAction)RespringButton:(id)sender {
     execCommand("/var/containers/Bundle/iosbinpack64/usr/bin/killall", "backboardd", NULL, NULL, NULL, NULL, 0);
     printf("Bye bye.\n");
@@ -364,23 +373,36 @@ uint64_t find_kernel_base() {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         moveFileFromAppDir("Arial.ttf",                     "/System/Library/Fonts/CoreAddition/Arial.ttf");
+        //chmod("/System/Library/Fonts/CoreAddition/Arial.ttf", 0777);
         moveFileFromAppDir("ArialBold.ttf",                 "/System/Library/Fonts/CoreAddition/ArialBold.ttf");
+        //chmod("/System/Library/Fonts/CoreAddition/ArialBold.ttf", 0777);
         moveFileFromAppDir("ArialBoldItalic.ttf",           "/System/Library/Fonts/CoreAddition/ArialBoldItalic.ttf");
+        //chmod("/System/Library/Fonts/CoreAddition/ArialBoldItalic.ttf", 0777);
         moveFileFromAppDir("ArialItalic.ttf",               "/System/Library/Fonts/CoreAddition/ArialItalic.ttf");
+        //chmod("/System/Library/Fonts/CoreAddition/ArialItalic.ttf", 0777);
         moveFileFromAppDir("ArialRoundedMTBold.ttf",        "/System/Library/Fonts/CoreAddition/ArialRoundedMTBold.ttf");
+        //chmod("/System/Library/Fonts/CoreAddition/ArialRoundedMTBold.ttf", 0777);
         moveFileFromAppDir("Keycaps.ttc",                   "/System/Library/Fonts/CoreAddition/Keycaps.ttc");
+        //chmod("/System/Library/Fonts/CoreAddition/Keycaps.ttc", 0777);
         moveFileFromAppDir("KeycapsPad.ttc",                "/System/Library/Fonts/CoreAddition/KeycapsPad.ttc");
+        //chmod("/System/Library/Fonts/CoreAddition/KeycapsPad.ttc", 0777);
         moveFileFromAppDir("SFUIDisplay.ttf",               "/System/Library/Fonts/CoreUI/SFUIDisplay.ttf");
+        //chmod("/System/Library/Fonts/CoreUI/SFUIDisplay.ttf", 0777);
         moveFileFromAppDir("SFUIText.ttf",                  "/System/Library/Fonts/CoreUI/SFUIText.ttf");
+        //chmod("/System/Library/Fonts/CoreUI/SFUIText.ttf", 0777);
         moveFileFromAppDir("SFUITextItalic.ttf",            "/System/Library/Fonts/CoreUI/SFUITextItalic.ttf");
+        //chmod("/System/Library/Fonts/CoreUI/SFUITextItalic.ttf", 0777);
         moveFileFromAppDir("PingFang.ttc",                  "/System/Library/Fonts/LanguageSupport/PingFang.ttc");
+        //chmod("/System/Library/Fonts/LanguageSupport/PingFang.ttc", 0777);
         
         [self log:@"Cleanning caches."];
         
-        unlink("/var/mobile/Library/Caches/com.apple.keyboards");
-        unlink("/var/mobile/Library/Caches/com.apple.UIStatusBar");
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                unlink("/var/mobile/Library/Caches/com.apple.keyboards");
+                unlink("/var/mobile/Library/Caches/com.apple.UIStatusBar");
+            });
         
-        [self log:@"Fonts Job Done. Respring to make effects.4"];
+        [self log:@"Fonts Job Done. Respring to make effects."];
     });
 }
 
